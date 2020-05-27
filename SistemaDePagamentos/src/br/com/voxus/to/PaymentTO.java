@@ -8,19 +8,21 @@ public class PaymentTO {
 	private double value;
 	private Calendar date;
 	private double tax;
+	private String comments;
 	
 	public PaymentTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public PaymentTO(int id, String title, double value, Calendar date, double tax) {
+	public PaymentTO(int id, String title, double value, Calendar date, double tax, String comments) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.value = value;
 		this.date = date;
 		this.tax = tax;
+		this.comments = comments;
 	}
 
 	public int getId() {
@@ -61,6 +63,14 @@ public class PaymentTO {
 
 	public void setTax(double tax) {
 		this.tax = tax;
+	}
+	
+	public String getComments() {
+		return comments;
+	}
+	
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	
 }
