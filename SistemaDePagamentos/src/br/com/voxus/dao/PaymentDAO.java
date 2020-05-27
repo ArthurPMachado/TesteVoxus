@@ -1,6 +1,7 @@
 package br.com.voxus.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import br.com.voxus.to.PaymentTO;
@@ -12,6 +13,39 @@ public class PaymentDAO {
 	public PaymentDAO() {
 		if(payments == null) {
 			payments = new ArrayList<PaymentTO>();
+		}
+	}
+	
+	public List<PaymentTO> readPayments() {
+		return payments;
+	}
+	
+	public boolean create(PaymentTO payment) {
+		if(payment != null) {
+			payment.setId((payments.get(payments.size() - 1).getId()+1));
+			return payments.add(payment);
+		}
+		
+		return false;
+	}
+	
+	public boolean update(PaymentTO payment) {
+		if(payment != null) {
+			for (int i = 0; i < payments.size(); i++) {
+				if(payments.get(i).getId() == payment.getId()) {
+					payments.set(i, payment);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public void delete(int id) {
+		for (int i = 0; i < payments.size(); i++) {
+			if(payments.get(i).getId() == id) {
+				payments.remove(i);
+			}
 		}
 	}
 }
