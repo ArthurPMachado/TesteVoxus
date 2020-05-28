@@ -19,7 +19,7 @@ import javax.ws.rs.core.UriInfo;
 import br.com.voxus.bo.PaymentBO;
 import br.com.voxus.to.PaymentTO;
 
-@Path("/payment/api/v1")
+@Path("/api/v1")
 public class PaymentResource {
 	
 	private PaymentBO bo = new PaymentBO();

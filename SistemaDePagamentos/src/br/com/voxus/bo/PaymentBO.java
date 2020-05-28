@@ -1,6 +1,8 @@
 package br.com.voxus.bo;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -16,6 +18,19 @@ public class PaymentBO {
 		dao = new PaymentDAO();
 	}
 	
+	// Formatar a data para  ano/mes/dia
+	public void formatarData(PaymentTO payment) {
+		SimpleDateFormat sdfIn = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat sdfOut = new SimpleDateFormat("yyyy-MM-dd");
+		String input = payment.getDate();
+		try {
+			Date date = sdfIn.parse(input);
+			sdfOut.format(date);
+		} catch (ParseException e) {
+			System.out.println("Falha ao converter a data");
+		}
+	}
+	
 	public boolean cadastrarPagamento(PaymentTO payment) {
 		// Valida o tamanho do titulo do pagamento
 		if(payment.getTitle().length() < 5 || payment.getTitle().length() > 100) {
@@ -23,9 +38,7 @@ public class PaymentBO {
 			return false;
 		}
 		
-		// Formatar a data para  ano/mes/dia
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		sdf.format(payment.getDate());
+		formatarData(payment);
 		
 		// A taxa é um valor fixo de 5% do valor do pagamento
 		double tax = payment.getValue() * 0.05;
@@ -42,7 +55,7 @@ public class PaymentBO {
 		return dao.update(payment);
 	}
 	
-	public void deletarPagamentos(int código) {
-		dao.delete(código);
+	public void deletarPagamento(int codigo) {
+		dao.delete(codigo);
 	}
 }

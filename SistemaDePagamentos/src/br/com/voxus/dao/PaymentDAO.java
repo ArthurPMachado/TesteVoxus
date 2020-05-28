@@ -17,7 +17,7 @@ public class PaymentDAO {
 	
 	public boolean create(PaymentTO payment) {
 		if(payment != null) {
-			payment.setId((payments.get(payments.size() - 1).getId()+1));
+			payment.setId(payment.getId()+1);
 			return payments.add(payment);
 		}
 		

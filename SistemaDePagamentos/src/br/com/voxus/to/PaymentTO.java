@@ -1,12 +1,10 @@
 package br.com.voxus.to;
 
-import java.util.Calendar;
-
 public class PaymentTO {
 	private int id;
 	private String title;
 	private double value;
-	private Calendar date;
+	private String date;
 	private double tax;
 	private String comments;
 	
@@ -15,7 +13,7 @@ public class PaymentTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PaymentTO(int id, String title, double value, Calendar date, double tax, String comments) {
+	public PaymentTO(int id, String title, double value, String date, double tax, String comments) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -49,11 +47,11 @@ public class PaymentTO {
 		this.value = value;
 	}
 
-	public Calendar getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Calendar date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
