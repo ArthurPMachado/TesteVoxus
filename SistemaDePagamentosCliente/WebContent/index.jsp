@@ -43,7 +43,6 @@
 		</form>
 	</div>
 
-	<c:if test="${controle != null}">
 		<table>
 			<tr>
 				<th>ID</th>
@@ -61,11 +60,10 @@
 					<td>${p.date}</td>
 					<td>${p.tax}</td>
 					<td>${p.comments}</td>
-					<td class="remove-td"><a href="remover?paymentIdDelete=${p.id}">Remover</a></td>
+					<td class="remove-td"><a href="excluir?paymentIdDelete=${p.id}">Remover</a></td>
 				</tr>
 			</c:forEach>
 
 		</table>
-	</c:if>
 </body>
 </html>
