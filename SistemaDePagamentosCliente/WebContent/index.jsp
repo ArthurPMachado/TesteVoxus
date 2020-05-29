@@ -28,12 +28,12 @@
 				</div>
 				<div>
 					<label for="idDate">Data do Pagamento: </label> <input
-						type="number" id="idDate" name="date" required="required"
+						id="idDate" name="date" required="required"
 						placeholder="Digite a data do pagamento">
 				</div>
 				<div>
 					<label for="idComments">Comentários do Pagamento: </label> <input
-						type="number" id="idDate" name="date"
+						id="idDate" name="comments"
 						placeholder="Digite os comentários do pagamento">
 				</div>
 				<div>
@@ -61,7 +61,7 @@
 					<td>${p.date}</td>
 					<td>${p.tax}</td>
 					<td>${p.comments}</td>
-					<td class="edit-td"><a href="remover?paymentIdDelete=${p.id}">Remover</a></td>
+					<td class="remove-td"><a href="remover?paymentIdDelete=${p.id}">Remover</a></td>
 				</tr>
 			</c:forEach>
 
