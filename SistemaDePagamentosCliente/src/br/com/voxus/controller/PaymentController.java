@@ -30,9 +30,9 @@ public class PaymentController extends HttpServlet {
 			
 			listar(request, response);
 			
-		} else if(request.getRequestURI().equals("/SistemaDePagamentosCliente/adicionar")) {
+		} else if(request.getRequestURI().equals("/SistemaDePagamentosCliente/cadastrar")) {
 			
-			adicionar(request, response);
+			cadastrar(request, response);
 			
 		} else if(request.getRequestURI().equals("/SistemaDePagamentosCliente/alterar")) {
 			
@@ -46,7 +46,7 @@ public class PaymentController extends HttpServlet {
 	}
 	
 	
-	protected void adicionar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void cadastrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		payment = new PaymentTO();
 		payment.setTitle(request.getParameter("title"));
 		payment.setValue(Double.parseDouble(request.getParameter("value")));
@@ -55,7 +55,7 @@ public class PaymentController extends HttpServlet {
 		
 		bo.cadastrar(payment);
 		
-		request.setAttribute("controle", "lista-produto");
+		request.setAttribute("controle", "lista-pagamento");
 		
 		request.getRequestDispatcher("listar").forward(request, response);
 	}
@@ -65,7 +65,7 @@ public class PaymentController extends HttpServlet {
 		
 		request.setAttribute("listaDePagamentos", paymentArray);
 		
-		request.setAttribute("controle", "lista-produto");
+		request.setAttribute("controle", "lista-pagamento");
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
@@ -79,7 +79,7 @@ public class PaymentController extends HttpServlet {
 		
 		bo.atualizar(payment);
 		
-		request.setAttribute("controle", "lista-produto");
+		request.setAttribute("controle", "lista-pagamento");
 		
 		request.getRequestDispatcher("listar").forward(request, response);
 	}
@@ -89,7 +89,7 @@ public class PaymentController extends HttpServlet {
 		
 		bo.excluir(codigo);
 		
-		request.setAttribute("controle", "lista-produto");
+		request.setAttribute("controle", "lista-pagamento");
 		
 		request.getRequestDispatcher("listar").forward(request, response);
 	}
