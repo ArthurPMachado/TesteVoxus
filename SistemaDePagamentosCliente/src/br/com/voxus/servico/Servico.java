@@ -16,7 +16,18 @@ public class Servico {
 	private WebResource resource = null;
 	private ClientResponse response = null;
 	
-	public PaymentTO[] listar() {
+	public URI servicePost(PaymentTO payment) {
+		resource = client.resource("http://localhost:8080/SistemaDePagamentos/payment/api/v1");
+		response = resource.type("application/json").post(ClientResponse.class, payment);
+		
+		if(response.getStatus() == 201) {
+			return response.getLocation();
+		} else {
+			return null;
+		}
+	}
+
+	public PaymentTO[] serviceGetAll() {
 		resource = client.resource("http://localhost:8080/SistemaDePagamentos/payment/api/v1");
 		response = resource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 		
@@ -27,18 +38,8 @@ public class Servico {
 		}
 	}
 	
-	public URI cadastrar(PaymentTO payment) {
-		resource = client.resource("http://localhost:8080/SistemaDePagamentos/payment/api/v1");
-		response = resource.type("application/json").post(ClientResponse.class, payment);
-		
-		if(response.getStatus() == 201) {
-			return response.getLocation();
-		} else {
-			return null;
-		}
-	}
 	
-	public boolean atualizar(PaymentTO payment, int codigo) {
+	public boolean servicePut(PaymentTO payment, int codigo) {
 		resource = client.resource("http://localhost:8080/SistemaDePagamentos/payment/api/v1/" + codigo);
 		response = resource.type("application/json").put(ClientResponse.class, payment);
 		
@@ -49,7 +50,7 @@ public class Servico {
 		}
 	}
 	
-	public boolean deletar(int codigo) {
+	public boolean serviceDelete(int codigo) {
 		resource = client.resource("http://localhost:8080/SistemaDePagamentos/payment/api/v1/" + codigo);
 		response = resource.delete(ClientResponse.class);
 	
