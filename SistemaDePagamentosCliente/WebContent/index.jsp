@@ -12,31 +12,32 @@
 </head>
 <body>
 	<div>
-		<form class="frm-1" action="${action_frm == null ? 'adicionar' : action_frm}" method="get">
+		<form action="cadastrar" method="POST">
 			<fieldset>
-				<legend>Cadastro de produtos</legend>
-				<input type="hidden" name="txtCdProduto"
-					value="${produtoObj.codigo}">
+				<legend>Cadastro de pagamentos</legend>
 				<div>
-					<label for="idNmProd">Nome do produto</label> <input type="text"
-						id="idNmProd" name="txtNmProd" required="required"
-						placeholder="Digite o nome do produto"
-						value="${produtoObj.titulo}">
+					<label for="idTitle">Titulo do Pagamento: </label> <input type="text"
+						id="idTitle" name="title" required="required"
+						placeholder="Digite o titulo do pagamento">
 				</div>
 				<div>
-					<label for="idVlProd">Preço do produto</label> <input type="text"
-						id="idVlProd" name="txtVlProd" required="required"
-						placeholder="Digite o valor do produto"
+					<label for="idValue">Valor do Pagamento: </label> <input type="text"
+						id="idValue" name="value" required="required"
+						placeholder="Digite o valor do pagamento"
 						value="${produtoObj.preco}">
 				</div>
 				<div>
-					<label for="idQtdProd">Quantidade do produto</label> <input
-						type="number" id="idQtdProd" name="txtQtdProd" required="required"
-						placeholder="Digite a quantidade do produto"
-						value="${produtoObj.quantidade}">
+					<label for="idDate">Data do Pagamento: </label> <input
+						type="number" id="idDate" name="date" required="required"
+						placeholder="Digite a data do pagamento">
 				</div>
 				<div>
-					<input type="submit" value="Cadastrar">
+					<label for="idComments">Comentários do Pagamento: </label> <input
+						type="number" id="idDate" name="date"
+						placeholder="Digite os comentários do pagamento">
+				</div>
+				<div>
+					<input type="submit" value="cadastrar">
 				</div>
 			</fieldset>
 		</form>
@@ -46,22 +47,21 @@
 		<table>
 			<tr>
 				<th>ID</th>
-				<th>NOME</th>
-				<th>PREÇO</th>
-				<th>QUANTIDADE</th>
-				<th colspan="2">EDITAR</th>
-
+				<th>TITULO</th>
+				<th>VALOR</th>
+				<th>DATA</th>
+				<th>TAXA</th>
+				<th>COMENTÁRIOS</th>
 			</tr>
-			<c:forEach var="p" items="${listaDeproduto}" varStatus="id">
+			<c:forEach var="p" items="${listaDePagamentos}" varStatus="id">
 				<tr>
-					<td>${p.codigo}</td>
-					<td>${p.titulo}</td>
-					<td>${p.preco}</td>
-					<td>${p.quantidade}</td>
-					<td class="edit-td"><a href="listar?codProd=${p.codigo}"><img
-							src="./img/editar.png"></a></td>
-					<td class="edit-td"><a href="remover?codProd=${p.codigo}"><img
-							src="./img/excluir.png"></a></td>
+					<td>${p.id}</td>
+					<td>${p.title}</td>
+					<td>${p.value}</td>
+					<td>${p.date}</td>
+					<td>${p.tax}</td>
+					<td>${p.comments}</td>
+					<td class="edit-td"><a href="remover?paymentIdDelete=${p.id}">Remover</a></td>
 				</tr>
 			</c:forEach>
 
